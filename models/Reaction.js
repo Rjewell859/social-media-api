@@ -1,29 +1,24 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const reactionSchema = new Schema(
   {
-    courseName: {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      max_length: 280,
+    },
+    username: {
       type: String,
       required: true,
     },
-    inPerson: {
-      type: Boolean,
-      default: true,
-    },
-    startDate: {
+    createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
-    endDate: {
-      type: Date,
-      default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
-    },
-    users: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      },
-    ],
   },
   {
     toJSON: {
@@ -33,6 +28,4 @@ const reactionSchema = new Schema(
   }
 );
 
-const Reaction = model('reaction', reactionSchema);
-
-module.exports = Reaction;
+module.exports = reactionSchema;

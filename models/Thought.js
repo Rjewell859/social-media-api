@@ -1,27 +1,27 @@
-const { Schema, Types, model } = require('mongoose');
+const { Schema, model, reactionSchema } = require('mongoose');
 
 const thoughtSchema = new Schema(
   {
-    thoughtId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
-    thoughtName: {
+    thoughtText: {
       type: String,
       required: true,
-      maxlength: 50,
-      minlength: 4,
-      default: 'Unnamed assignment',
-    },
-    score: {
-      type: Number,
-      required: true,
-      default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
+      maxlength: 280,
+      minlength: 1,
     },
     createdAt: {
       type: Date,
       default: Date.now,
     },
+    username: {
+      type: String,
+      required: true,
+    },
+    reactions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'reactionSchema',
+      },
+    ],
   },
   {
     toJSON: {
@@ -32,4 +32,4 @@ const thoughtSchema = new Schema(
 );
 
 const Thought = model('thought', thoughtSchema);
-module.exports = thoughtSchema;
+module.exports = Thought;
