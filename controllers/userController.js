@@ -70,15 +70,15 @@ module.exports = {
       });
   },
 
-  // Add an assignment to a student
-  addThought(req, res) {
-    console.log('You are adding a thought');
+  // Add a a friend
+  addFriend(req, res) {
+    console.log('You are adding a friend');
     console.log(req.body);
     User.findOneAndUpdate({
         _id: req.params.userId
       }, {
         $addToSet: {
-          thoughts: req.body
+          friends: ObjectId(req.body)
         }
       }, {
         runValidators: true,
@@ -95,14 +95,14 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove assignment from a student
-  removeThought(req, res) {
+  // Remove friend
+  removeFriend(req, res) {
     User.findOneAndUpdate({
         _id: req.params.userId
       }, {
         $pull: {
-          thought: {
-            thoughtId: req.params.thoughtId
+          friend: {
+            _id: req.body.userId
           }
         }
       }, {
@@ -114,7 +114,7 @@ module.exports = {
         res
         .status(404)
         .json({
-          message: 'No user with that ID :('
+          message: 'No user with that ID'
         }) :
         res.json(user)
       )
