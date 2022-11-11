@@ -114,8 +114,8 @@ module.exports = {
         _id: req.params.userId
       }, {
         $pull: {
-          friend: {
-            _id: req.body.userId
+          friends: {
+            _id: ObjectId(req.params.friendId)
           }
         }
       }, {
