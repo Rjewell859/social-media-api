@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const thoughtSchema = require('./Thought');
 
 var validateEmail = function(email) {
   var regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]{2,5}$/;
@@ -45,6 +44,10 @@ const userSchema = new Schema(
 
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
+});
+
+userSchema.virtual('thoughtCount').get(function () {
+  return this.thoughts.length;
 });
 
 const User = model('user', userSchema);
