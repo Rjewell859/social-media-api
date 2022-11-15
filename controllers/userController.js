@@ -99,7 +99,16 @@ module.exports = {
         runValidators: true,
         new: true
       })
-      .then((user) =>
+      .then((user)  =>
+      User.findOneAndUpdate({
+        _id: ObjectId(req.body)
+      }, {
+        $addToSet: {
+          friends: ObjectId(user.id)
+        }
+      },
+      ))
+      .then ((user)=>
         !user ?
         res
         .status(404)
