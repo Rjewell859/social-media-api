@@ -74,10 +74,22 @@ module.exports = {
           message: 'No user with that ID'
         }) : 
         Thought.deleteMany({username: user.username})
+        .then((user) =>
+        User.updateMany({
+        },
+          {
+            $pull: {
+              friends: ObjectId(req.params.userId)
+            }
+          }, {
+            runValidators: true,
+            new: true
+          })
+          
         .then (res.json({
-          message: 'User and thoughts successfully deleted'
+          message: 'User and thoughts and friends successfully deleted'
         })
-      ))
+      )))
       
       .catch((err) => {
         console.log(err);
