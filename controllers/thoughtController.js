@@ -83,12 +83,12 @@ module.exports = {
   },
   // Remove reaction
   removeReaction(req, res) {
+    console.log('You are removing a reaction');
+    console.log(req.body)
     Thought.findOneAndUpdate({
         _id: req.params.thoughtId
       }, {
-        $pull: {
-          reactions: ObjectId(req.body)
-        }
+        $pull: { reactions: { reactionId: req.params.reactionId } }
       }, {
         runValidators: true,
         new: true
