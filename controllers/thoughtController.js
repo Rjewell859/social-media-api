@@ -25,7 +25,12 @@ module.exports = {
 
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thought) => res.json(thought))
+      .then((thought) => 
+      User.findOneAndUpdate({username: thought.username}, {$addToSet: {
+        thoughts: thought.id
+    }})
+    .then((thought) => res.json(thought))
+      )
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
@@ -37,7 +42,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : User.deleteMany({ _id: { $in: thought.users } })
+          : User.findOneAndUpdate({ username: thought.username },  {$pull: { thoughts: ObjectId(thought.id) }})
       )
       .then(() => res.json({ message: 'Thought deleted!' }))
       .catch((err) => res.status(500).json(err));

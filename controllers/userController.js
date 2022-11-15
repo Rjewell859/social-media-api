@@ -73,7 +73,7 @@ module.exports = {
         res.status(404).json({
           message: 'No user with that ID'
         }) : 
-        Thought.findOneAndRemove({username: user.username})
+        Thought.deleteMany({username: user.username})
         .then (res.json({
           message: 'User and thoughts successfully deleted'
         })
