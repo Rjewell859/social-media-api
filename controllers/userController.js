@@ -131,6 +131,15 @@ module.exports = {
         runValidators: true,
         new: true
       })
+      .then((user)  =>
+      User.findOneAndUpdate({
+        _id: ObjectId(req.body)
+      }, {
+        $pull: {
+          friends: ObjectId(user.id)
+        }
+      },
+      ))
       .then((user) =>
         !user ?
         res
