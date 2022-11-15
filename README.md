@@ -16,7 +16,7 @@ This project is the back end code for a social media api. It features a mongoDB 
 
 * First the required dependencies must be installed by navigating to the terminal in the social-media-api directory and typing "npm install".
 * Next the database can be seeded with default users by typing the command "npm run seed". (Not neccesary to function)
-* Afterwords the command "npm run server" can be used to boot up the server.
+* Afterwords the command "npm run start" or "nodemon index.js" can be used to boot up the server.
 
 ### Usage
 
