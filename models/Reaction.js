@@ -1,31 +1,32 @@
-const { Schema, Types } = require('mongoose');
+const {
+  Schema,
+  Types
+} = require('mongoose');
+// Schema for reactions, this is exported as a schema not a model
 
-const reactionSchema = new Schema(
-  {
-    reactionId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
-    reactionBody: {
-      type: String,
-      required: true,
-      max_length: 280,
-    },
-    username: {
-      type: String,
-      required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
+const reactionSchema = new Schema({
+  reactionId: {
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId(),
   },
-  {
-    toJSON: {
-      virtuals: true,
-    },
-    _id: false,
-  }
-);
+  reactionBody: {
+    type: String,
+    required: true,
+    max_length: 280,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+}, {
+  toJSON: {
+    virtuals: true,
+  },
+  _id: false,
+});
 
 module.exports = reactionSchema;

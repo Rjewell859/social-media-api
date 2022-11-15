@@ -12,11 +12,11 @@ connection.once('open', async () => {
   await User.deleteMany({});
 
   await Thought.deleteMany({});
-  
+
   await User.collection.insertMany(userData);
 
   console.table(userData);
 
-  console.info('Seeding complete! 🌱');
+  console.info('Seeding complete! 🌲');
   process.exit(0);
 });
