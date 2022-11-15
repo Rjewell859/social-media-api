@@ -72,11 +72,13 @@ module.exports = {
         !user ?
         res.status(404).json({
           message: 'No user with that ID'
-        }) :
-        res.json({
-          message: 'User successfully deleted'
+        }) : 
+        Thought.findOneAndRemove({username: user.username})
+        .then (res.json({
+          message: 'User and thoughts successfully deleted'
         })
-      )
+      ))
+      
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);
