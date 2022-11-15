@@ -27,7 +27,7 @@ module.exports = {
     Thought.create(req.body)
       .then((thought) => 
       User.findOneAndUpdate({username: thought.username}, {$addToSet: {
-        thoughts: thought.id
+        thoughts: thought._id
     }})
     .then((thought) => res.json(thought))
       )
@@ -42,7 +42,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : User.findOneAndUpdate({ username: thought.username },  {$pull: { thoughts: ObjectId(thought.id) }})
+          : User.findOneAndUpdate({ username: thought.username },  {$pull: { thoughts: ObjectId(thought._id) }})
       )
       .then(() => res.json({ message: 'Thought deleted!' }))
       .catch((err) => res.status(500).json(err));

@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const {
-  User
+  User, Thought
 } = require('../models');
 const userData = require('./userData.json')
 
@@ -11,6 +11,8 @@ connection.once('open', async () => {
 
   await User.deleteMany({});
 
+  await Thought.deleteMany({});
+  
   await User.collection.insertMany(userData);
 
   console.table(userData);
