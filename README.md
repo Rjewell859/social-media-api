@@ -26,7 +26,7 @@ Start the server and then make requests with insomnia to test out the functional
 
 Demonstration Video: 
 
-[![Demonstration Video]({https://www.svgrepo.com/show/13672/play-button.svg})]({https://drive.google.com/file/d/1ugv5a1qOp4ntTCxnYP4vnvaYFUuUnnlu/view} "Demo")
+[![Demonstration Video](https://www.svgrepo.com/show/13672/play-button.svg)](https://drive.google.com/file/d/1ugv5a1qOp4ntTCxnYP4vnvaYFUuUnnlu/view "Demo")
 
 
 #### Contact
